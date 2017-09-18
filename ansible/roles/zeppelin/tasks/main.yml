@@ -29,7 +29,7 @@
     dest: "/usr/zeppelin/conf/{{ item }}"
     owner: vagrant
   with_items:
-    - zeppelin.site
+    - zeppelin-site.xml
     - shiro.ini
     - zeppelin-env.sh
 
