@@ -1,0 +1,48 @@
+- name: Fetch Zeppelin package
+  get_url:
+    url: "http://archive.apache.org/dist/zeppelin/zeppelin-{{ zeppelin_version }}/zeppelin-{{ zeppelin_version }}-bin-netinst.tgz"
+    dest: "/tmp/zeppelin.tgz"
+
+- name: Extract Zeppelin package
+  unarchive:
+    src: /tmp/zeppelin.tgz
+    dest: /usr
+    remote_src: yes
+
+- name: Remove old Zeppelin link
+  file:
+    path: /usr/zeppelin
+    state: absent
+
+- name: Link new Zeppelin
+  file:
+    src: /usr/zeppelin-{{ zeppelin_version }}-bin-netinst
+    dest: /usr/zeppelin
+    state: link
+
+- name: Install interpreters
+  shell: "/usr/zeppelin/bin/install-interpreter.sh --name md,python"
+
+- name: Copy configuration files
+  template:
+    src: "{{ item }}.j2"
+    dest: "/usr/zeppelin/conf/{{ item }}"
+    owner: vagrant
+  with_items:
+    - zeppelin.site
+    - shiro.ini
+    - zeppelin-env.sh
+
+- name: Link Zeppelin to autostart
+  file:
+    src: /usr/zeppelin/bin/zeppelin-daemon.sh
+    dest: /etc/init.d/zeppelin-daemon.sh
+    state: link
+
+
+# TODO: Convert to use service
+- name: Enable Zepplin service
+  shell: "update-rc.d zeppelin-daemon.sh defaults"
+
+- name: Start Zeppelin
+  shell: "/etc/init.d/zeppelin-daemon.sh start"

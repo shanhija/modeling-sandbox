@@ -1,0 +1,27 @@
+- name: Fetch Spark package
+  get_url:
+    url: "http://d3kbcqa49mib13.cloudfront.net/spark-{{ spark_version }}-bin-hadoop{{ hadoop_version }}.tgz"
+    dest: "/tmp/spark.tgz"
+
+- name: Extract Spark package
+  unarchive:
+    src: /tmp/spark.tgz
+    dest: /usr
+    remote_src: yes
+
+- name: Remove old Spark link
+  file:
+    path: /usr/spark
+    state: absent
+
+- name: Link new Spark
+  file:
+    src: /usr/spark-{{ spark_version}}-bin-hadoop{{ hadoop_version }}
+    dest: /usr/spark
+    state: link
+
+- name: Add Spark to path
+  template:
+    src: spark.sh.j2
+    dest: /etc/profile.d/spark.sh
+    owner: vagrant

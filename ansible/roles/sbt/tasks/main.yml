@@ -1,0 +1,16 @@
+- name: Fetch SBT package
+  get_url:
+    url: https://github.com/sbt/sbt/releases/download/v{{ sbt_version }}/sbt-{{ sbt_version }}.tgz
+    dest: /tmp/sbt.tgz
+
+- name: Extract SBT package
+  unarchive:
+    src: /tmp/sbt.tgz
+    dest: /usr
+    remote_src: yes
+
+- name: Add SBT to path
+  template:
+    src: sbt.sh.j2
+    dest: /etc/profile.d/sbt.sh
+    owner: vagrant
