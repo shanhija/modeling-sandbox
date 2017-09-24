@@ -1,5 +1,10 @@
+- name: Add repository to install Java 8
+  apt_repository:
+    repo: ppa:openjdk-r/ppa
+    state: present
+
 - name: Install Java
   apt:
-    name: openjdk-7-jdk
+    name: openjdk-8-jdk
     state: latest
     install_recommends: no

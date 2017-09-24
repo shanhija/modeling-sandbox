@@ -28,5 +28,5 @@ Vagrant.configure("2") do |config|
   end
 
   # A message to show after vagrant up
-  config.vm.post_up_message = "Installation complete!\n\nAccess Zeppelin at: http://localhost:8080\nUser: admin\nPass:admin"
+  config.vm.post_up_message = "Installation complete!\n\nAccess Zeppelin at: http://localhost:8080\nUser: admin\nPass: admin"
 end

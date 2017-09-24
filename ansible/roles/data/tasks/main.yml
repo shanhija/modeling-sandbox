@@ -1,0 +1,66 @@
+- name: Create /data directory
+  file:
+    path: /vagrant/data
+    owner: vagrant
+    state: directory
+
+- name: Create directory for house prices problem
+  file:
+    path: /vagrant/data/house_prices
+    state: directory
+    owner: vagrant
+
+- name: Download house prices data
+  get_url:
+    url: "http://www.amstat.org/publications/jse/v19n3/decock/AmesHousing.txt"
+    dest: "/vagrant/data/house_prices/AmesHousing.txt"
+    owner: vagrant
+
+- name: Download house prices data description
+  get_url:
+    url: "http://www.amstat.org/publications/jse/v19n3/decock/DataDocumentation.txt"
+    dest: "/vagrant/data/house_prices/DataDocumentation.txt"
+    owner: vagrant
+
+- name: Create directory for movie lens problem
+  file:
+    path: /vagrant/data/movie_lens
+    state: directory
+    owner: vagrant
+
+- name: Download movie lens data
+  get_url:
+    url: "http://files.grouplens.org/datasets/movielens/ml-1m.zip"
+    dest: "/vagrant/data/movie_lens"
+    owner: vagrant
+
+- name: Download movie lens data description
+  get_url:
+    url: "http://files.grouplens.org/datasets/movielens/ml-1m-README.txt"
+    dest: "/vagrant/data/movie_lens/README.txt"
+    owner: vagrant
+
+- name: Create directory for NYTimes articles problem
+  file:
+    path: /vagrant/data/articles
+    state: directory
+    owner: vagrant
+
+- name: Download NYTimes articles data description
+  get_url:
+    url: "https://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/readme.txt"
+    dest: "/vagrant/data/articles/readme.txt"
+    owner: vagrant
+
+- name: Download NYTimes articles data
+  get_url:
+    url: "https://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/docword.nytimes.txt.gz"
+    dest: "/vagrant/data/articles/docword.nytimes.txt.gz"
+    owner: vagrant
+
+- name: Download NYTimes articles vocabulary
+  get_url:
+    url: "https://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/vocab.nytimes.txt"
+    dest: "/vagrant/data/articles/vocab.nytimes.txt"
+    owner: vagrant
+
