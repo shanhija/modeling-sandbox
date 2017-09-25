@@ -48,25 +48,27 @@
 
 - name: Create directory for NYTimes articles problem
   file:
-    path: /vagrant/data/articles
+    path: /vagrant/data/nips
     state: directory
     owner: vagrant
 
-- name: Download NYTimes articles data description
+- name: Download NIPS abstracts data description
   get_url:
     url: "https://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/readme.txt"
-    dest: "/vagrant/data/articles/readme.txt"
+    dest: "/vagrant/data/nips/readme.txt"
     owner: vagrant
 
-- name: Download NYTimes articles data
+- name: Download NIPS abstracts
   get_url:
-    url: "https://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/docword.nytimes.txt.gz"
-    dest: "/vagrant/data/articles/docword.nytimes.txt.gz"
+    url: "https://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/docword.nips.txt.gz"
+    dest: "/vagrant/data/nips/docword.nips.txt.gz"
     owner: vagrant
 
-- name: Download NYTimes articles vocabulary
+- name: Download NIPS abstracts vocabulary
   get_url:
-    url: "https://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/vocab.nytimes.txt"
-    dest: "/vagrant/data/articles/vocab.nytimes.txt"
+    url: "https://archive.ics.uci.edu/ml/machine-learning-databases/bag-of-words/vocab.nips.txt"
+    dest: "/vagrant/data/nips/vocab.nips.txt"
     owner: vagrant
+
+
 
