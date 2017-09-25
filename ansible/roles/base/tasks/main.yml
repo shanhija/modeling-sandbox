@@ -1,2 +1,5 @@
-# - name: Update apt cache
-#   apt: update_cache=yes
+- name: Install unzip
+  apt:
+    name: unzip
+    state: latest
+    install_recommends: no

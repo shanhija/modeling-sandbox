@@ -34,6 +34,12 @@
     dest: "/vagrant/data/movie_lens"
     owner: vagrant
 
+- name: Extract movie lens data
+  unarchive:
+    src: /vagrant/data/movie_lens/ml-1m.zip
+    dest: /vagrant/data/movie_lens/
+    remote_src: yes
+
 - name: Download movie lens data description
   get_url:
     url: "http://files.grouplens.org/datasets/movielens/ml-1m-README.txt"
